@@ -12,7 +12,7 @@ You can:
 
 You must NOT:
 * claim the Code as your own
-* remove any notice that the Code/Plugin is by me (Including Text in Resource Packs)
+* remove any notice that the Code/Plugin is by me
 
 ==========
 
