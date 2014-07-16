@@ -102,7 +102,7 @@ public class Scroller {
 		return colour + sb.toString();
 
 	}
-	
+
 	public int length() {
 		return list.size();
 	}

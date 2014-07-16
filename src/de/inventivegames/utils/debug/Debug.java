@@ -24,8 +24,8 @@ public class Debug {
 	private IGUtils				utils;
 
 	private String				pasteURL;
-	
-	private String pasteID;
+
+	private String				pasteID;
 
 	public Debug(IGUtils utils) {
 		this.utils = utils;
@@ -43,16 +43,13 @@ public class Debug {
 
 	}
 
-	
-	
 	public String send() {
-		
+
 		this.apiKey = IGUtils.utils.getAPIKey();
 
-		if((this.apiKey == null) || (this.apiKey.isEmpty()) || (this.apiKey.contains("PASTE YOUR API KEY HERE"))) {
+		if ((this.apiKey == null) || (this.apiKey.isEmpty()) || (this.apiKey.contains("PASTE YOUR API KEY HERE")))
 			return "§cMissing Pastebin API Key! Please provide one in the configuration file at plugins/IGUtils/config.yml";
-		}
-		
+
 		PastebinAPI api = new PastebinAPI(this.apiKey);
 		//
 		//		ArrayList<String> line1List = new ArrayList<String>(values.keySet());
@@ -68,12 +65,7 @@ public class Debug {
 			lines += entry.getKey() + " = " + entry.getValue() + "\n";
 		}
 
-		CreatePaste paste = api.createPaste()
-				.withExpireDate(ExpireDate.ONE_MONTH)
-				.withFormat(Format.None)
-				.withPrivacyLevel(PrivacyLevel.UNLISTED)
-				.withName("IGUtils_Debug_" + utils.CURRENT_DATE)
-				.withText(lines);
+		CreatePaste paste = api.createPaste().withExpireDate(ExpireDate.ONE_MONTH).withFormat(Format.None).withPrivacyLevel(PrivacyLevel.UNLISTED).withName("IGUtils_Debug_" + utils.CURRENT_DATE).withText(lines);
 		String url = "NULL";
 		try {
 			url = paste.post();
@@ -82,17 +74,17 @@ public class Debug {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		this.pasteID = url.replace("http://pastebin.com/", "");
 		this.pasteURL = "http://www.inventivegames.de/quickreport?id=" + pasteID;
-		
+
 		return "§2Successfully sent Report.";
 	}
-	
+
 	public String getURL() {
 		return this.pasteURL;
 	}
-	
+
 	public String getReportURL() {
 		return "http://www.inventivegames.de/report?pl=" + values.get("PLUGIN") + "&qr=" + this.pasteURL;
 	}

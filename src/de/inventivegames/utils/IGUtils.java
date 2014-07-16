@@ -44,6 +44,7 @@ public class IGUtils {
 				this.config = YamlConfiguration.loadConfiguration(configFile);
 
 				this.config.addDefault("PasteBin_APIKey", "PASTE YOUR API KEY HERE.");
+				this.config.addDefault("broadcastJoin", true);
 				this.config.options().copyDefaults(true);
 
 				this.config.save(this.configFile);
@@ -53,14 +54,14 @@ public class IGUtils {
 			}
 		}
 		this.config = YamlConfiguration.loadConfiguration(configFile);
-		
+
 		setupBukkit();
 	}
 
 	public void setupBukkit() {
 		this.plugin.getServer().getPluginManager().registerEvents(new PlayerEvent(this), this.plugin);
 	}
-	
+
 	static double getJavaVersion() {
 		String version = System.getProperty("java.version");
 		int pos = 0, count = 0;
@@ -77,21 +78,21 @@ public class IGUtils {
 
 	}
 
+	public Debug getDebug() {
+		return new Debug(this);
+	}
+	
+	public PlayerUtils getPlayerUtils() {
+		return new PlayerUtils(this);
+	}
+	
 	public ChatUtils getChatUtils() {
 		return new ChatUtils(this);
 	}
 
-	public CMapUtils getCMapUtils() {
-		return new CMapUtils(this);
-	}
-
-	public LocationUtils getLocationUtils() {
-		return new LocationUtils(this);
-	}
-
-	public Debug getDebug() {
-		return new Debug(this);
-	}
+	//	public XPTimer getXPTimer() {
+	//		return (new XPTimer(this));
+	//	}
 
 	public String getAPIKey() {
 		return this.config.getString("PasteBin_APIKey");

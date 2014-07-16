@@ -9,22 +9,21 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Command_ {
 
-	private Plugin 				plugin;
+	private Plugin				plugin;
 	private String				name;
 	private String				perm;
 	private ArrayList<Argument>	args	= new ArrayList<Argument>();
-	private CommandHandler handler;
-	private PluginCommand command;
-	private CommandType type = CommandType.BOTH;
-	
+	private CommandHandler		handler;
+	private PluginCommand		command;
+	private CommandType			type	= CommandType.BOTH;
 
 	public Command_(Plugin plugin, String name, CommandType type) {
 		this.name = name;
 		this.plugin = plugin;
 		this.handler = new CommandHandler(this);
 		this.type = type;
-		
-		this.command = ((JavaPlugin)this.plugin).getCommand(this.name);
+
+		this.command = ((JavaPlugin) this.plugin).getCommand(this.name);
 		this.command.setExecutor(this.handler);
 	}
 
@@ -63,7 +62,7 @@ public class Command_ {
 		}
 		return args;
 	}
-	
+
 	public CommandType getType() {
 		return this.type;
 	}

@@ -6,9 +6,9 @@ import org.bukkit.plugin.Plugin;
 
 public class CommandManager {
 
-	private Plugin	plugin;
-	
-	private ArrayList<Command_> commands = new ArrayList<Command_>();
+	private Plugin				plugin;
+
+	private ArrayList<Command_>	commands	= new ArrayList<Command_>();
 
 	public CommandManager(Plugin plugin) {
 		this.plugin = plugin;
@@ -19,7 +19,7 @@ public class CommandManager {
 		commands.add(cmd);
 		return cmd;
 	}
-	
+
 	public void unregisterCommand(String name) {
 		commands.remove(name);
 	}

@@ -13,7 +13,7 @@ public class ChatUtils {
 		this.utils = utils;
 	}
 
-	public static void sendRawMessage(Player player, String message) {
+	public void sendRawMessage(Player player, String message) {
 		try {
 			Object handle = Reflection.getHandle(player);
 			Object connection = Reflection.getField(handle.getClass(), "playerConnection").get(handle);
